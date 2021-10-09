@@ -6,14 +6,14 @@ using Zenject;
 public class WriterManager : Persistable<WriterManager>, ITickable
 {
     [Inject]
-    private SignalBus signals;
+    private SignalBus singalBus;
 
     public List<Writer> writers = new List<Writer>();
 
     public void AddWorker(Writer writer)
     {
         writers.Add(writer);
-        signals.Fire(new OnWriterAddedSignal(writer));
+        singalBus.Fire(new OnWriterAddedSignal(writer));
     }
 
     public override void BeforeSave()
@@ -24,7 +24,7 @@ public class WriterManager : Persistable<WriterManager>, ITickable
     {
         foreach(Writer writer in writers)
         {
-            signals.Fire(new OnWriterAddedSignal(writer));
+            singalBus.Fire(new OnWriterAddedSignal(writer));
         }
     }
 

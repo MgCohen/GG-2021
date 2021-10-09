@@ -8,6 +8,14 @@ using Zenject;
 [System.Serializable]
 public class Writer
 {
+    public Writer(List<ThemeLevel> themes, int speed, string writerName)
+    {
+        workQuality = themes;
+        this.speed = speed;
+        this.writerName = writerName;
+    }
+
+
     [Inject]
     private GameUtility utility;
 
