@@ -103,4 +103,9 @@ public class WorkerView : MonoBehaviour
         collectButton.gameObject.SetActive(false);
         workText.gameObject.SetActive(false);
     }
+
+    public class Factory: PlaceholderFactory<WorkerView>
+    {
+
+    }
 }
