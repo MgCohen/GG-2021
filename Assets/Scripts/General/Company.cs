@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class Company : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int level;
+    public List<Story> completedWork;
 }

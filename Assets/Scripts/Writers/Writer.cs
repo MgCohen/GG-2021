@@ -2,8 +2,61 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
+using Zenject;
 
-public class Writer : MonoBehaviour
+[System.Serializable]
+public class Writer
 {
+    [Inject]
+    private GameUtility utility;
+
+    [SerializeField]
     public List<ThemeLevel> workQuality;
+
+    public string writerName;
+    public int speed;
+
+    public WorkStatus workStatus = WorkStatus.Idle;
+    public Story currentWork;
+    public long completionTime;
+
+    public void StartWorking(Story work)
+    {
+        completionTime = CalculateWorkTime(work);
+        workStatus = WorkStatus.Working;
+        currentWork = work;
+    }
+
+    public int CalculateWorkTime(Story work)
+    {
+        int counter = 0;
+        foreach (var themeLevel in work.themes)
+        {
+            counter += (themeLevel.level * utility.StoryTicksPerLevel) / speed;
+        }
+        return counter;
+    }
+
+    public void Work()
+    {
+        if (DateTime.Now.Ticks > completionTime)
+        {
+            workStatus = WorkStatus.finished;
+        }
+    }
+
+    public Story CollectWork()
+    {
+        workStatus = WorkStatus.Idle;
+        return currentWork;
+    }
+
+}
+
+public enum WorkStatus
+{
+    Idle,
+    Working,
+    finished
 }
