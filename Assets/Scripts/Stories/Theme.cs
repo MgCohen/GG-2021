@@ -8,6 +8,7 @@ public class Theme : ScriptableObject
     public Sprite icon;
 }
 
+[System.Serializable]
 public class ThemeLevel
 {
     public Theme theme;

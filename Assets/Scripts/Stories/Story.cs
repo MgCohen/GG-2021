@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Story : MonoBehaviour
+[System.Serializable]
+public class Story
 {
-    public List<Theme> thematics = new List<Theme>();
+    public List<ThemeLevel> themes = new List<ThemeLevel>();
 }
