@@ -26,6 +26,7 @@ public class WriterList : MonoBehaviour
     {
         var workView = factory.Create();
         workView.transform.SetParent(listContainer);
+        workView.transform.localScale = Vector3.one;
         workView.Init(signal.Writer);
     }
 

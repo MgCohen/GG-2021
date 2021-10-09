@@ -41,6 +41,7 @@ public class WorkerView : MonoBehaviour
         {
             ThemeView view =  factory.Create(theme);
             view.transform.SetParent(themesContainer);
+            view.transform.localScale = Vector3.one;
         }
         workStatus = writer.workStatus;
     }

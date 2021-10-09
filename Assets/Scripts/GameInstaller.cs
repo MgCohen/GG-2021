@@ -6,6 +6,8 @@ public class GameInstaller : MonoInstaller
     public ThemeView themeViewPrefab;
     public WorkerView workViewPrefab;
 
+    public Theme[] themes;
+
     public override void InstallBindings()
     {
         SignalBusInstaller.Install(Container);
@@ -21,5 +23,10 @@ public class GameInstaller : MonoInstaller
 
         Container.BindFactory<ThemeLevel, ThemeView, ThemeView.Factory>().FromComponentInNewPrefab(themeViewPrefab);
         Container.BindFactory<WorkerView, WorkerView.Factory>().FromComponentInNewPrefab(workViewPrefab);
+
+        foreach(var theme in themes)
+        {
+            Container.QueueForInject(theme);
+        }
     }
 }
