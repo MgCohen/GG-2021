@@ -14,6 +14,7 @@ public class ThemeView : MonoBehaviour
     [Inject]
     public void Init(ThemeLevel level)
     {
+        Debug.Log(level);
         icon.sprite = level.theme.icon;
         if(level.level <= 1)
         {
