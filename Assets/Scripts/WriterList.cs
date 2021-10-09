@@ -17,7 +17,8 @@ public class WriterList : MonoBehaviour
 
     public Transform listContainer;
 
-    public void Start()
+    [Inject]
+    private void Init()
     {
         signals.Subscribe<OnWriterAddedSignal>(OnWriterHired);
     }

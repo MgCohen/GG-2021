@@ -19,7 +19,7 @@ public abstract class Persistable<T> : IInitializable, IDisposable
 
     public void Initialize()
     {
-        saveManager.Load<T>();
+        saveManager.Load(this);
         OnLoad();
     }
 
