@@ -1718,6 +1718,13 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8804511063936979190, guid: 1cf3ea73b08b23f4fbdb1a40531e10d1,
+        type: 3}
+      propertyPath: m_text
+      value: 'Aceitar Job
+
+'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cf3ea73b08b23f4fbdb1a40531e10d1, type: 3}
 --- !u!1001 &7638556874474461758
@@ -1727,6 +1734,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7638556873955707985, guid: f7954c0862a523c48bb68a0190507ccd,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 7638556873955707985, guid: f7954c0862a523c48bb68a0190507ccd,
+        type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7638556874054283705, guid: f7954c0862a523c48bb68a0190507ccd,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 68648881ccf74ab469907a7cca0bb461,
+        type: 3}
     - target: {fileID: 7638556874071439908, guid: f7954c0862a523c48bb68a0190507ccd,
         type: 3}
       propertyPath: m_Camera
