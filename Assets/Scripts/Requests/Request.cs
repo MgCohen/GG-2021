@@ -8,4 +8,9 @@ public class Request
     public int xpReward;
 
     public List<ThemeLevel> requisities;
+
+    public bool CanBeCompletedBy(Story story)
+    {
+        return true;
+    }
 }

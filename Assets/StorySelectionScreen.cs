@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using System.Linq;
+using System;
 
 public class StorySelectionScreen : MonoBehaviour
 {
@@ -13,13 +15,37 @@ public class StorySelectionScreen : MonoBehaviour
     public Transform container;
     public List<StoryView> storyViewer;
 
-    public void Set()
+    public System.Action<List<Story>> selectionCallback;
+
+    public void Set(int storyLimit, System.Action<List<Story>> callback, Func<Story, bool> predicate = null)
     {
-        foreach(Story story in stories.stories)
+        gameObject.SetActive(true);
+
+        selectionCallback = callback;
+
+        foreach (StoryView view in storyViewer)
         {
-            var view = factory.Create(story, container);
-            storyViewer.Add(view);
-            view.SetSelectable();
+            Destroy(view.gameObject);
         }
+
+        storyViewer.Clear();
+
+        foreach (Story story in stories.stories)
+        {
+            if (predicate == null || predicate(story))
+            {
+                var view = factory.Create(story, container);
+                storyViewer.Add(view);
+                view.SetSelectable(true);
+            }
+        }
+    }
+
+    public void EndSelection()
+    {
+        var stories = storyViewer.Where(sv => sv.isSelected).Select(s => s.story).ToList();
+        selectionCallback.Invoke(stories);
+        selectionCallback = null;
+        gameObject.SetActive(false);
     }
 }
