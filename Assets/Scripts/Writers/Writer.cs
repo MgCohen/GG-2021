@@ -23,7 +23,7 @@ public class Writer
     public List<ThemeLevel> workQuality;
 
     public string writerName;
-    public int speed;
+    public long speed;
 
     public WorkStatus workStatus = WorkStatus.Idle;
     public Story currentWork;
@@ -31,17 +31,19 @@ public class Writer
 
     public void StartWorking(Story work)
     {
+        Debug.Log(1);
         completionTime = CalculateWorkTime(work);
         workStatus = WorkStatus.Working;
         currentWork = work;
     }
 
-    public int CalculateWorkTime(Story work)
+    public long CalculateWorkTime(Story work)
     {
-        int counter = 0;
+        long counter = 0;
         foreach (var themeLevel in work.themes)
         {
-            counter += (themeLevel.level * utility.StoryTicksPerLevel) / speed;
+            //Debug.Log(utility.StoryTicksPerLevel);
+            counter += (themeLevel.level * 60) / speed;
         }
         return counter;
     }

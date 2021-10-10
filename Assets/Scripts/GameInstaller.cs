@@ -7,8 +7,10 @@ public class GameInstaller : MonoInstaller
     public WorkerView workViewPrefab;
     public DealView dealViewPrefab;
     public StoryView storyViewPrefab;
+    public ThemeSlider themeSliderPrefab;
 
     public GameObject storySelectionScreen;
+    public GameObject storyMakingScreen;
 
     public Theme[] themes;
 
@@ -30,11 +32,13 @@ public class GameInstaller : MonoInstaller
         Container.DeclareSignal<OnDealRefreshSignal>();
 
         Container.Bind<StorySelectionScreen>().FromComponentsOn(storySelectionScreen).AsSingle();
+        Container.Bind<StoryMakingScreen>().FromComponentOn(storyMakingScreen).AsSingle();
 
-        Container.BindFactory<ThemeLevel, ThemeView, ThemeView.Factory>().FromComponentInNewPrefab(themeViewPrefab);
+        Container.BindFactory<ThemeLevel, Transform, ThemeView, ThemeView.Factory>().FromComponentInNewPrefab(themeViewPrefab);
         Container.BindFactory<WorkerView, WorkerView.Factory>().FromComponentInNewPrefab(workViewPrefab);
         Container.BindFactory<Story, Transform, StoryView, StoryView.Factory>().FromComponentInNewPrefab(storyViewPrefab);
         Container.BindFactory<Deal, Transform, DealView, DealView.Factory>().FromComponentInNewPrefab(dealViewPrefab);
+        Container.BindFactory<ThemeLevel, Transform, ThemeSlider, ThemeSlider.Factory>().FromComponentInNewPrefab(themeSliderPrefab);
 
         foreach (var theme in themes)
         {

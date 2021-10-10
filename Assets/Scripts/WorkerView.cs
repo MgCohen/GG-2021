@@ -27,6 +27,9 @@ public class WorkerView : MonoBehaviour
     public TextMeshProUGUI workText;
     public Button workButton;
 
+    [Inject]
+    public StoryMakingScreen storyMakingScreen;
+
     public void Init(Writer newWriter)
     {
         writer = newWriter;
@@ -38,7 +41,7 @@ public class WorkerView : MonoBehaviour
 
     public void PickStory()
     {
-        Debug.Log(1);
+        storyMakingScreen.Set(writer.workQuality, writer, s => writer.StartWorking(new Story(s)));
     }
 
     private void SetBasicVisuals()
@@ -46,9 +49,7 @@ public class WorkerView : MonoBehaviour
         nameText.text = writer.writerName;
         foreach(ThemeLevel theme in writer.workQuality)
         {
-            ThemeView view =  factory.Create(theme);
-            view.transform.SetParent(themesContainer);
-            view.transform.localScale = Vector3.one;
+            ThemeView view =  factory.Create(theme, themesContainer);
         }
         workStatus = writer.workStatus;
     }

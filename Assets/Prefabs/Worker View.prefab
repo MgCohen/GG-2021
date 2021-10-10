@@ -373,6 +373,7 @@ MonoBehaviour:
   collectButton: {fileID: 1516771666983002055}
   workText: {fileID: 1516771665593475412}
   workButton: {fileID: 4761901867474145317}
+  storyMakingScreen: {fileID: 0}
 --- !u!114 &4761901867474145317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,7 +568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1516771666983002052
 RectTransform:
   m_ObjectHideFlags: 0
