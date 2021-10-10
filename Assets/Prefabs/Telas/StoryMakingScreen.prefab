@@ -221,9 +221,11 @@ MonoBehaviour:
   sliders: []
   sliderContainer: {fileID: 7754284940606436170}
   writer:
-    workQuality: []
-    writerName: 
-    speed: 0
+    workQuality:
+    - theme: {fileID: 11400000, guid: 6a2f1160a6a007843a2cc36262bfeaf3, type: 2}
+      level: 1
+    writerName: Juska
+    speed: 2
     workStatus: 0
     currentWork:
       themes: []

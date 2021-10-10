@@ -9,7 +9,6 @@ using TMPro;
 
 public class StoryMakingScreen : MonoBehaviour
 {
-
     [Inject]
     public ThemeSlider.Factory factory;
 
@@ -36,6 +35,7 @@ public class StoryMakingScreen : MonoBehaviour
     {
         foreach (var theme in themes)
         {
+            Debug.Log(theme);
             var slider = factory.Create(theme, sliderContainer);
             sliders.Add(slider);
             slider.transform.SetSiblingIndex(1);
@@ -73,8 +73,7 @@ public class StoryMakingScreen : MonoBehaviour
 
     private void Update()
     {
-        var timeLeft  = new TimeSpan(DateTime.Now.Ticks + writer.CalculateWorkTime(new Story(RetrieveValues())));
-        Debug.Log(writer.CalculateWorkTime(new Story(RetrieveValues())));
-        //timeText.text = "Time To Complete: " + timeLeft.Hours + "h " + timeLeft.Minutes + "m";
+        var timeLeft  = new TimeSpan(writer.CalculateWorkTime(new Story(RetrieveValues())));
+        timeText.text = "Time To Complete: " + timeLeft.Hours + "h " + timeLeft.Minutes + "m " + timeLeft.Seconds + "s";
     }
 }

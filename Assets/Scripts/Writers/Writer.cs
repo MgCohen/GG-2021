@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 using Zenject;
+using System;
 
 [System.Serializable]
 public class Writer
@@ -32,7 +33,7 @@ public class Writer
     public void StartWorking(Story work)
     {
         Debug.Log(1);
-        completionTime = CalculateWorkTime(work);
+        completionTime = DateTime.Now.Ticks + CalculateWorkTime(work);
         workStatus = WorkStatus.Working;
         currentWork = work;
     }
@@ -43,7 +44,7 @@ public class Writer
         foreach (var themeLevel in work.themes)
         {
             //Debug.Log(utility.StoryTicksPerLevel);
-            counter += (themeLevel.level * 60) / speed;
+            counter += (themeLevel.level * 600000000) / speed;
         }
         return counter;
     }

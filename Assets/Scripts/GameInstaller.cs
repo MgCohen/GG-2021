@@ -9,8 +9,8 @@ public class GameInstaller : MonoInstaller
     public StoryView storyViewPrefab;
     public ThemeSlider themeSliderPrefab;
 
-    public GameObject storySelectionScreen;
-    public GameObject storyMakingScreen;
+    public StorySelectionScreen storySelectionScreen;
+    public StoryMakingScreen storyMakingScreen;
 
     public Theme[] themes;
 
@@ -25,14 +25,15 @@ public class GameInstaller : MonoInstaller
         Container.Bind<WriterService>().AsSingle();
         Container.Bind<GameUtility>().AsSingle();
         Container.Bind<DealService>().AsSingle();
+        Container.Bind<Company>().AsSingle();
 
-        Container.DeclareSignal<OnWorkCollectedSignal>();
-        Container.DeclareSignal<OnWorkUsedSignal>();
-        Container.DeclareSignal<OnWriterAddedSignal>();
-        Container.DeclareSignal<OnDealRefreshSignal>();
+        Container.DeclareSignal<OnWorkCollectedSignal>().OptionalSubscriber();
+        Container.DeclareSignal<OnWorkUsedSignal>().OptionalSubscriber();
+        Container.DeclareSignal<OnWriterAddedSignal>().OptionalSubscriber();
+        Container.DeclareSignal<OnDealRefreshSignal>().OptionalSubscriber();
 
-        Container.Bind<StorySelectionScreen>().FromComponentsOn(storySelectionScreen).AsSingle();
-        Container.Bind<StoryMakingScreen>().FromComponentOn(storyMakingScreen).AsSingle();
+        Container.Bind<StorySelectionScreen>().FromInstance(storySelectionScreen).AsSingle();
+        Container.Bind<StoryMakingScreen>().FromInstance(storyMakingScreen).AsSingle();
 
         Container.BindFactory<ThemeLevel, Transform, ThemeView, ThemeView.Factory>().FromComponentInNewPrefab(themeViewPrefab);
         Container.BindFactory<WorkerView, WorkerView.Factory>().FromComponentInNewPrefab(workViewPrefab);
@@ -44,5 +45,7 @@ public class GameInstaller : MonoInstaller
         {
             Container.QueueForInject(theme);
         }
+
+        Container.QueueForInject(storyMakingScreen);
     }
 }

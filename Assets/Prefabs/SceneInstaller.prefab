@@ -53,7 +53,11 @@ MonoBehaviour:
     type: 3}
   storyViewPrefab: {fileID: -2481307131707361309, guid: 0a5705281941e884c9710d8f5c6c8f4b,
     type: 3}
+  themeSliderPrefab: {fileID: 7775622081002047900, guid: 055b3b98c1528154e8080c8181cc21d9,
+    type: 3}
   storySelectionScreen: {fileID: 6135142500794407591}
+  storyMakingScreen: {fileID: 7754284939769075878, guid: 7f3317950722bc14ca2c5b2b17cafde6,
+    type: 3}
   themes:
   - {fileID: 11400000, guid: 6a2f1160a6a007843a2cc36262bfeaf3, type: 2}
   - {fileID: 11400000, guid: ca8e6b3ca81697646b9a40f8c0529e46, type: 2}

@@ -22,7 +22,6 @@ public class ThemeSlider : MonoBehaviour
     {
         transform.SetParent(parent);
         transform.localScale = Vector3.one;
-
         factory.Create(themeLevel, themeViewContainer);
         slider.onValueChanged.AddListener(UpdateValue);
         slider.maxValue = themeLevel.level;

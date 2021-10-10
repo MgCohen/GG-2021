@@ -21,6 +21,13 @@ public class StoryManager : Persistable<StoryManager>
 
     }
 
+    public void CollectStory(Story story)
+    {
+        stories.Add(story);
+        signals.Fire(new OnWorkCollectedSignal(story));
+    }
+
+
     public bool CanCompleteDeal(Deal deal)
     {
         foreach(ThemeLevel tl in deal.requisities)

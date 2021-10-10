@@ -20,6 +20,8 @@ public class WorkerView : MonoBehaviour
 
     [Inject]
     public ThemeView.Factory factory;
+    [Inject]
+    public StoryManager stories;
 
     private WorkStatus workStatus;
 
@@ -86,7 +88,7 @@ public class WorkerView : MonoBehaviour
         if(writer.workStatus == WorkStatus.finished)
         {
             var story = writer.CollectWork();
-            signals.Fire(new OnWorkCollectedSignal(story));
+            stories.CollectStory(story);
         }
     }
 
@@ -100,7 +102,8 @@ public class WorkerView : MonoBehaviour
     private void SetWorkingVisuals()
     {
         workText.gameObject.SetActive(true);
-        workText.text = new TimeSpan((DateTime.Now.Ticks - writer.completionTime)).ToString();
+        var timeLeft = new TimeSpan(writer.completionTime - DateTime.Now.Ticks);
+        workText.text = "Working: " + timeLeft.Hours + "h " + timeLeft.Minutes + "m " + timeLeft.Seconds + "s"; 
     }
 
     private void SetFinishedVisuals()

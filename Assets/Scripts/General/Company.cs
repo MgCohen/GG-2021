@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Company : MonoBehaviour
+public class Company: Persistable<Company>
 {
     public int level;
     public int xp;
@@ -12,5 +12,13 @@ public class Company : MonoBehaviour
     {
         xp += xpAmount;
         gold += goldAmount;
+    }
+
+    public override void BeforeSave()
+    {
+    }
+
+    public override void OnLoad()
+    {
     }
 }

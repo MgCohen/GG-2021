@@ -29,6 +29,8 @@ public class DealListing : MonoBehaviour
 
     private void Update()
     {
+        if (timer == null) return;
+
         timer.text = new TimeSpan((dealManager.nextReset - DateTime.Now.Ticks)).ToString();
     }
 

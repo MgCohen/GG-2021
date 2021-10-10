@@ -15,6 +15,7 @@ public class ThemeView : MonoBehaviour
     public void Init(ThemeLevel level, Transform parent)
     {
         icon.sprite = level.theme.icon;
+
         if (level.level <= 1)
         {
             numberHolder.SetActive(false);
