@@ -48,6 +48,10 @@ MonoBehaviour:
     type: 3}
   workViewPrefab: {fileID: 7249422440288121970, guid: bcaf95aed62601e4985f3705f6505e22,
     type: 3}
+  dealViewPrefab: {fileID: -6653802956233628007, guid: a538788c8d66c43489cc1be8d33491eb,
+    type: 3}
+  storyViewPrefab: {fileID: -2481307131707361309, guid: 0a5705281941e884c9710d8f5c6c8f4b,
+    type: 3}
   themes:
   - {fileID: 11400000, guid: 6a2f1160a6a007843a2cc36262bfeaf3, type: 2}
   - {fileID: 11400000, guid: ca8e6b3ca81697646b9a40f8c0529e46, type: 2}

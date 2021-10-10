@@ -2104,7 +2104,7 @@ PrefabInstance:
     - target: {fileID: 7402002742066311964, guid: 145fd412451adaf49a33608bed603470,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7402002742066311964, guid: 145fd412451adaf49a33608bed603470,
         type: 3}
@@ -2138,7 +2138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1600817407
 Transform:
   m_ObjectHideFlags: 0
@@ -2153,7 +2153,7 @@ Transform:
   - {fileID: 1925738048}
   - {fileID: 1009533983}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1624158493 stripped
 RectTransform:
@@ -3211,6 +3211,16 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 7638556874960207107, guid: f7954c0862a523c48bb68a0190507ccd,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7638556874960207107, guid: f7954c0862a523c48bb68a0190507ccd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 989.99994
+      objectReference: {fileID: 0}
     - target: {fileID: 7638556875153610865, guid: f7954c0862a523c48bb68a0190507ccd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3270,6 +3280,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tela Inicial
+      objectReference: {fileID: 0}
+    - target: {fileID: 7638556875153610867, guid: f7954c0862a523c48bb68a0190507ccd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7954c0862a523c48bb68a0190507ccd, type: 3}
