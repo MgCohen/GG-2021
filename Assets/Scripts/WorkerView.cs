@@ -25,6 +25,7 @@ public class WorkerView : MonoBehaviour
 
     public Button collectButton;
     public TextMeshProUGUI workText;
+    public Button workButton;
 
     public void Init(Writer newWriter)
     {
@@ -32,6 +33,12 @@ public class WorkerView : MonoBehaviour
         SetBasicVisuals();
         collectButton.onClick.AddListener(TryCollect);
         UpdateVisuals();
+        workButton.onClick.AddListener(PickStory);
+    }
+
+    public void PickStory()
+    {
+        Debug.Log(1);
     }
 
     private void SetBasicVisuals()
@@ -85,6 +92,7 @@ public class WorkerView : MonoBehaviour
     private void SetIdleVisuals()
     {
         workText.gameObject.SetActive(true);
+        workButton.interactable = true;
         workText.text = "Waiting for work...";
     }
 
@@ -103,6 +111,7 @@ public class WorkerView : MonoBehaviour
     {
         collectButton.gameObject.SetActive(false);
         workText.gameObject.SetActive(false);
+        workButton.interactable = false;
     }
 
     public class Factory: PlaceholderFactory<WorkerView>

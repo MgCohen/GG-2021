@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using UnityEngine.UI;
 
 public class DealView : MonoBehaviour
 {
     [Inject]
     private SignalBus signals;
-
+    [Inject]
+    StorySelectionScreen selectionScreen;
     [Inject]
     private StoryManager stories;
+    [Inject]
+    private Company company;
 
+    public Button selectButton;
     private Deal deal;
 
     private bool isDone = false;
@@ -21,8 +26,11 @@ public class DealView : MonoBehaviour
         transform.SetParent(parent);
         transform.localScale = Vector3.one;
         this.deal = deal;
-        signals.Subscribe<OnWorkCollectedSignal>(s => UpdateView());
-        signals.Subscribe<OnWorkUsedSignal>(s => UpdateView());
+        SetDeal();
+        signals.Subscribe<OnWorkCollectedSignal>(UpdateView);
+        signals.Subscribe<OnWorkUsedSignal>(UpdateView);
+
+        selectButton.onClick.AddListener(TryCompleteDeal);
     }
 
     public void SetDeal()
@@ -32,16 +40,23 @@ public class DealView : MonoBehaviour
 
     public void TryCompleteDeal()
     {
-        //popup 
+        selectionScreen.Set(1, Complete, s => deal.CanBeCompletedBy(s));
     }
 
-    public void Complete()
+    public void Complete(List<Story> spentStories)
     {
         isDone = true;
+        foreach(var story in spentStories)
+        {
+            stories.SpendStory(story);
+        }
+        company.AddReward(deal.goldReward, deal.xpReward);
     }
 
     private void UpdateView()
     {
+        if (isDone) return;
+
         if (stories.CanCompleteDeal(deal))
         {
             SetAsCompletable();
@@ -56,6 +71,11 @@ public class DealView : MonoBehaviour
     }
 
     private void SetAsBlocked()
+    {
+
+    }
+
+    private void SetAsDone()
     {
 
     }

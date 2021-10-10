@@ -8,6 +8,8 @@ public class GameInstaller : MonoInstaller
     public DealView dealViewPrefab;
     public StoryView storyViewPrefab;
 
+    public GameObject storySelectionScreen;
+
     public Theme[] themes;
 
     public override void InstallBindings()
@@ -26,6 +28,8 @@ public class GameInstaller : MonoInstaller
         Container.DeclareSignal<OnWorkUsedSignal>();
         Container.DeclareSignal<OnWriterAddedSignal>();
         Container.DeclareSignal<OnDealRefreshSignal>();
+
+        Container.Bind<StorySelectionScreen>().FromComponentsOn(storySelectionScreen).AsSingle();
 
         Container.BindFactory<ThemeLevel, ThemeView, ThemeView.Factory>().FromComponentInNewPrefab(themeViewPrefab);
         Container.BindFactory<WorkerView, WorkerView.Factory>().FromComponentInNewPrefab(workViewPrefab);
