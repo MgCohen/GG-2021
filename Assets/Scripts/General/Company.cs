@@ -5,5 +5,12 @@ using UnityEngine;
 public class Company : MonoBehaviour
 {
     public int level;
-    public List<Story> completedWork;
+    public int xp;
+    public int gold;
+
+    public void AddReward(int goldAmount, int xpAmount)
+    {
+        xp += xpAmount;
+        gold += goldAmount;
+    }
 }

@@ -5,6 +5,8 @@ public class GameInstaller : MonoInstaller
 {
     public ThemeView themeViewPrefab;
     public WorkerView workViewPrefab;
+    public DealView dealViewPrefab;
+    public StoryView storyViewPrefab;
 
     public Theme[] themes;
 
@@ -14,17 +16,23 @@ public class GameInstaller : MonoInstaller
 
         Container.BindInterfacesAndSelfTo<SaveManager>().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<WriterManager>().AsSingle().NonLazy();
+        Container.Bind<StoryManager>().AsSingle().NonLazy();
+        Container.Bind<DealManager>().AsSingle().NonLazy();
         Container.Bind<WriterService>().AsSingle();
         Container.Bind<GameUtility>().AsSingle();
-
+        Container.Bind<DealService>().AsSingle();
 
         Container.DeclareSignal<OnWorkCollectedSignal>();
+        Container.DeclareSignal<OnWorkUsedSignal>();
         Container.DeclareSignal<OnWriterAddedSignal>();
+        Container.DeclareSignal<OnDealRefreshSignal>();
 
         Container.BindFactory<ThemeLevel, ThemeView, ThemeView.Factory>().FromComponentInNewPrefab(themeViewPrefab);
         Container.BindFactory<WorkerView, WorkerView.Factory>().FromComponentInNewPrefab(workViewPrefab);
+        Container.BindFactory<Story, Transform, StoryView, StoryView.Factory>().FromComponentInNewPrefab(storyViewPrefab);
+        Container.BindFactory<Deal, Transform, DealView, DealView.Factory>().FromComponentInNewPrefab(dealViewPrefab);
 
-        foreach(var theme in themes)
+        foreach (var theme in themes)
         {
             Container.QueueForInject(theme);
         }

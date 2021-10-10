@@ -21,7 +21,6 @@ public class SaveManager
         {
             string json = File.ReadAllText(fullPath);
             JsonUtility.FromJsonOverwrite(json, instance);
-            Debug.Log(json);
         }
     }
 }

@@ -6,34 +6,27 @@ using Zenject;
 
 public class DealManager : Persistable<DealManager>, ITickable
 {
+
+    [Inject]
+    private SignalBus signals;
+    [Inject]
+    private DealService dealService;
+
+    public List<Deal> deals = new List<Deal>();
+
     public override void BeforeSave()
     {
     }
 
     public override void OnLoad()
     {
-    }
-
-    public long nextReset;
-
-    public List<DealView> deals = new List<DealView>();
-
-    [Inject]
-    private DealService dealService;
-
-    [Inject]
-    private DealView.Factory factory;
-
-    [Inject]
-    private Transform container;
-
-    public void Init()
-    {
         if (nextReset == 0)
         {
             SetFirstResetDate();
         }
     }
+
+    public long nextReset;
 
     public void SetFirstResetDate()
     {
@@ -45,22 +38,15 @@ public class DealManager : Persistable<DealManager>, ITickable
     {
         if (DateTime.Now.Ticks >= nextReset)
         {
+            nextReset = new DateTime(nextReset).AddDays(1).Ticks;
+            deals.Clear();
 
-        }
-    }
+            for (int i = 0; i < 4; i++)
+            {
+                deals.Add(dealService.GenerateDeal());
+            }
 
-    private void ResetDeals()
-    {
-        nextReset = new DateTime(nextReset).AddDays(1).Ticks;
-        foreach (var deal in deals)
-        {
-            GameObject.Destroy(deal.gameObject);
-        }
-        deals.Clear();
-        for (int i = 0; i < 4; i++)
-        {
-            Deal newDeal = dealService.GenerateDeal();
-            DealView dv = factory.Create(newDeal, container);
+            signals.Fire(new OnDealRefreshSignal());
         }
     }
 }
